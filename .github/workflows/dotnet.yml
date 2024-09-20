@@ -27,12 +27,5 @@ jobs:
     - name: Create a file
       run: echo "Creating Test File" > test-results.trx
     - name: Test
-      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
-    - name: Publish Test Results
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: test-results.trx
-    - name: List Test Results
-      run: cat test-results.trx
+      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj
+
