@@ -24,8 +24,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Create a file
-      run: echo "Creating Test File" > test-results.trx
+    - name: Restore Test dependencies
+      run: dotnet restore PropertFinderTaskTests/PropertFinderTaskTests.csproj
     - name: Test
       run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj
 
