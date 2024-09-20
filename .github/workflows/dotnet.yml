@@ -26,3 +26,10 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj  --configuration Release  --no-build --verbosity normal
+       # Optional: Publish test results
+    - name: Publish Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: '**/TestResults/*.xml'
