@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj  --configuration Release  --no-build --verbosity normal --results-directory TestResults
+      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj  --configuration Release  --no-build --verbosity normal --logger "console;verbosity=detailed"
