@@ -24,5 +24,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Restore Test dependencies
+      run: dotnet restore PropertFinderTaskTests/PropertFinderTaskTests.csproj
     - name: Test
       run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj  --no-build --verbosity normal --list-tests
