@@ -32,3 +32,5 @@ jobs:
       with:
         name: test-results
         path: TestResults/*.trx
+    - name: List Test Results
+      run: ls -R TestResults
