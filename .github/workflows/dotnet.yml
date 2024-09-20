@@ -24,17 +24,15 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Create Output Dir
-      run: mkdir TestResults
-    - name: Create Output File
-      run: touch test-results.trx
+    - name: Create a file
+      run: echo "Creating Test File" > test-results.trx
     - name: Test
-      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory TestResults
+      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
     - name: Publish Test Results
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: TestResults/test-results.trx
+        path: test-results.trx
     - name: List Test Results
-      run: ls -R TestResults
+      run: cat test-results.trx
