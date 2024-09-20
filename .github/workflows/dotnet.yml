@@ -26,6 +26,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Create Output Dir
       run: mkdir TestResults
+    - name: Create Output File
+      run: touch test-results.trx
     - name: Test
       run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory TestResults
     - name: Publish Test Results
@@ -33,6 +35,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: TestResults/*.trx
+        path: TestResults/test-results.trx
     - name: List Test Results
       run: ls -R TestResults
