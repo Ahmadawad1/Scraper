@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: PropertyFinder Task Workflow
 
 on:
   push:
@@ -25,4 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj  --no-build --verbosity normal --list-tests
+      run: dotnet test PropertFinderTaskTests/PropertFinderTaskTests.csproj --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory TestResults
+    - name: Publish Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: TestResults/*.trx
