@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test PropertyFinderTaskTests/PropertyFinderTaskTests.sln --no-build --verbosity normal
+      run: dotnet test PropertyFinderTaskTests  --configuration Release  --no-build --verbosity normal
