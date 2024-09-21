@@ -7,14 +7,15 @@ namespace PropertyFinderTask.Services
 {
     public class Scraper : IScrapper
     {
-        public List<Task<string>> Scrape(string[] files)
+        public List<Task<string>> Scrape(string[] url)
         {
             List<Task<string>> result = new List<Task<string>>();
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < url.Length; i++)
             {
-                FileType fileType = UrlUtil.GetExtension(files[i]);
-                string url = UrlUtil.GetMockServerUrl(files[i]);
-                result.Add(ScrapeSingleFile(fileType, url));
+                string fileName = UrlUtil.ExtractFileName(url[i]);
+                string filePath = UrlUtil.GetMockServerUrl(fileName);
+                FileType fileType = UrlUtil.GetExtension(fileName);
+                result.Add(ScrapeSingleFile(fileType, filePath));
             }
             return result;
         }

@@ -38,7 +38,7 @@ namespace PropertFinderTaskTests.ControllersTest
         [Fact]
         public async Task TestValidURL_ValidURL_ReturnsTrue()
         {
-            bool isValid = UrlUtil.IsValidUrl("test.json");
+            bool isValid = UrlUtil.IsValidUrl("http://example.com/test.json");
             Assert.True(isValid);
         }
 

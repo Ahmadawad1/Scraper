@@ -1,4 +1,5 @@
 ﻿using PropertyFinderTask.Models;
+using System;
 using System.IO;
 
 namespace PropertyFinderTask.Util
@@ -15,6 +16,12 @@ namespace PropertyFinderTask.Util
         {
             if (GetExtension(url) == FileType.Unknown) return false;
             return true;
+        }
+
+        public static string ExtractFileName(string url)
+        {
+            Uri uri = new Uri(url);
+            return Path.GetFileName(uri.AbsolutePath);
         }
 
         public static FileType GetExtension(string fileName)

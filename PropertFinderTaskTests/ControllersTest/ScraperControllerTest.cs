@@ -22,10 +22,10 @@ namespace PropertFinderTaskTests.ControllersTest
         public async Task TestMultilpeFiles_ValidAndInvalid_ReturnsDifferentResult()
         {
             string[] urls = new string[] {
-                  "entity-123-456.json",
-                  "test.pdf",
-                  "product-123.html",
-                  "empty.json"
+                  "http://example.com/entity-123-456.json",
+                  "http://example.com/test.pdf",
+                  "http://example.com/product-123.html",
+                  "http://example.com/empty.json"
             };
             var expectedScrapedResult = new List<Task<string>>
             {
@@ -47,7 +47,7 @@ namespace PropertFinderTaskTests.ControllersTest
         [Fact]
         public async Task TestSingleJsonFile_CorrectFile_ReturnsTitle()
         {
-            string[] urls = new string[] { "entity-123-456.json" };
+            string[] urls = new string[] { "http://example.com/entity-123-456.json" };
             var expectedScrapedResult = new List<Task<string>>
             {
                 Task.FromResult("My Title")
@@ -61,7 +61,7 @@ namespace PropertFinderTaskTests.ControllersTest
         [Fact]
         public async Task TestSingleJsonFile_FileNotExistInMockServer_ReturnsInvalidUrl()
         {
-            string[] urls = new string[] { "entity-123.json" };
+            string[] urls = new string[] { "http://example.com/entity-123.json" };
             var expectedScrapedResult = new List<Task<string>>
             {
                 Task.FromResult(Constants.FILE_NOT_FOUND)
@@ -75,7 +75,7 @@ namespace PropertFinderTaskTests.ControllersTest
         [Fact]
         public async Task TestSingleJsonFile_FileExistButEmpty_ReturnsEmptyContentError()
         {
-            string[] urls = new string[] { "empty.json" };
+            string[] urls = new string[] { "http://example.com/empty.json" };
             var expectedScrapedResult = new List<Task<string>>
             {
                 Task.FromResult(Constants.EMPTY_CONTENT)
@@ -89,7 +89,7 @@ namespace PropertFinderTaskTests.ControllersTest
         [Fact]
         public async Task TestSingleHtmlFile_CorrectFile_ReturnsTitle()
         {
-            string[] urls = new string[] { "product-123.html" };
+            string[] urls = new string[] { "http://example.com/product-123.html" };
             var expectedScrapedResult = new List<Task<string>>
             {
                 Task.FromResult("Title")
@@ -103,7 +103,7 @@ namespace PropertFinderTaskTests.ControllersTest
         [Fact]
         public async Task TestUnsupportedFile_UnsupportedFormat_ReturnsUnsupportedError()
         {
-            string[] urls = new string[] { "product-123.pdf" };
+            string[] urls = new string[] { "http://example.com/product-123.pdf" };
             var expectedScrapedResult = new List<Task<string>>
             {
                 Task.FromResult(Constants.UNSUPPORTED_TYPE)
